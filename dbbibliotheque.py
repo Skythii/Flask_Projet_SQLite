@@ -7,24 +7,15 @@ with open('schemabb.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO livres (titre, auteur) VALUES (?, ?)",('A lécole des sorciers', 'JK Rowling' ))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('La chambre des secrets', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('Le prisonier d'ascaban', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('La coupe de feu', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('Lordre du phénix', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('Le prince de sang mélé', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('Les reliques de la mort', 'JK Rowling'))
-cur.execute("INSERT INTO livres (titre) VALUES (?)",('Nan mais alo quoi', 'Thibault Demaret'))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('A lécole des sorciers', 'JK Rowling', 5 ))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La chambre des secrets', 'JK Rowling' 6))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prisonier d'ascaban', 'JK Rowling' 4))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La coupe de feu', 'JK Rowling' 7))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Lordre du phénix', 'JK Rowling' 3))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prince de sang mélé', 'JK Rowling' 9))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Les reliques de la mort', 'JK Rowling' 8))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Nan mais alo quoi', 'Thibault Demaret' 10))
 
-connection.commit()
-connection.close()
-
-connection = sqlite3.connect('database.db')
-
-with open('schema.sql') as f:
-    connection.executescript(f.read())
-
-cur = connection.cursor()
 
 cur.execute("INSERT INTO clients (nom, prenom, adresse) VALUES (?, ?, ?)",('DUPONT', 'Emilie', '123, Rue des Lilas, 75001 Paris'))
 cur.execute("INSERT INTO clients (nom, prenom, adresse) VALUES (?, ?, ?)",('LEROUX', 'Lucas', '456, Avenue du Soleil, 31000 Toulouse'))
