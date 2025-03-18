@@ -31,7 +31,7 @@ def authentification():
 
 @app.route('/fiche_client/<int:post_id>')
 def Readfiche(post_id):
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
     data = cursor.fetchall()
@@ -40,7 +40,7 @@ def Readfiche(post_id):
 
 @app.route('/consultation/')
 def ReadBDD():
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients;')
     data = cursor.fetchall()
@@ -55,7 +55,7 @@ def formulaire_client():
 def enregistrer_client():
     nom = request.form['nom']
     prenom = request.form['prenom']
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('INSERT INTO clients (created, nom, prenom, adresse) VALUES (?, ?, ?, ?)', (1002938, nom, prenom, "ICI"))
     conn.commit()
@@ -75,7 +75,7 @@ def ajouter_livre():
     auteur = request.form['auteur']
     quantite = request.form['quantite']
 
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('INSERT INTO livres (titre, auteur, quantite) VALUES (?, ?, ?)', (titre, auteur, quantite))
     conn.commit()
@@ -86,7 +86,7 @@ def ajouter_livre():
 # Afficher les livres
 @app.route('/livres', methods=['GET'])
 def afficher_livres():
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres')
     livres = cursor.fetchall()
@@ -96,7 +96,7 @@ def afficher_livres():
 # Modifier un livre (formulaire)
 @app.route('/livres/<int:id>', methods=['GET'])
 def modifier_livre_form(id):
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres WHERE id = ?', (id,))
     livre = cursor.fetchone()
@@ -110,7 +110,7 @@ def modifier_livre(id):
     auteur = request.form['auteur']
     quantite = request.form['quantite']
 
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('UPDATE livres SET titre = ?, auteur = ?, quantite = ? WHERE id = ?', 
                    (titre, auteur, quantite, id))
@@ -122,7 +122,7 @@ def modifier_livre(id):
 # Supprimer un livre
 @app.route('/livres/<int:id>', methods=['GET'])
 def supprimer_livre(id):
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM livres WHERE id = ?', (id,))
     conn.commit()
@@ -133,7 +133,7 @@ def supprimer_livre(id):
 # API Gestion des utilisateurs
 @app.route('/clients', methods=['GET'])
 def get_clients():
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients')
     clients = cursor.fetchall()
@@ -144,7 +144,7 @@ def get_clients():
 @app.route('/emprunts', methods=['POST'])
 def emprunter_livre():
     data = request.get_json()
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('INSERT INTO emprunts (id_client, id_livre) VALUES (?, ?)', (data['id_client'], data['id_livre']))
     conn.commit()
@@ -153,7 +153,7 @@ def emprunter_livre():
 
 @app.route('/emprunts/<int:id>', methods=['PUT'])
 def retourner_livre(id):
-    conn = sqlite3.connect('dbbibliotheque.db')
+    conn = sqlite3.connect('bibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('UPDATE emprunts SET date_retour = CURRENT_TIMESTAMP WHERE id = ?', (id,))
     conn.commit()
