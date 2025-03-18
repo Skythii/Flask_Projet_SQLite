@@ -9,12 +9,12 @@ cur = connection.cursor()
 
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('A lécole des sorciers', 'JK Rowling', 5 ))
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La chambre des secrets', 'JK Rowling' 6))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prisonier dascaban', 'JK Rowling' 4))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La coupe de feu', 'JK Rowling' 7))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Lordre du phénix', 'JK Rowling' 3))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prince de sang mélé', 'JK Rowling' 9))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Les reliques de la mort', 'JK Rowling' 8))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Nan mais alo quoi', 'Thibault Demaret' 10))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prisonier dascaban', 'JK Rowling', 4))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La coupe de feu', 'JK Rowling', 7))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Lordre du phénix', 'JK Rowling', 3))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prince de sang mélé', 'JK Rowling', 9))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Les reliques de la mort', 'JK Rowling', 8))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Nan mais alo quoi', 'Thibault Demaret', 10))
 
 
 cur.execute("INSERT INTO clients (nom, prenom, adresse) VALUES (?, ?, ?)",('DUPONT', 'Emilie', '123, Rue des Lilas, 75001 Paris'))
