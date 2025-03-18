@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enregistrer un client</title>
+</head>
+<body>
+    <h1>Enregistrer un nouveau client</h1>
+    <form method="POST">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required><br><br>
+
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" name="adresse" required><br><br>
+
+        <button type="submit">Enregistrer</button>
+    </form>
+    <br>
+    <a href="{{ url_for('ReadBDD') }}">Retour à la liste des clients</a>
+</body>
+</html>
