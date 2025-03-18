@@ -8,7 +8,7 @@ with open('schemabb.sql') as f:
 cur = connection.cursor()
 
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('A lécole des sorciers', 'JK Rowling', 5 ))
-cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La chambre des secrets', 'JK Rowling' 6))
+cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La chambre des secrets', 'JK Rowling', 6))
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Le prisonier dascaban', 'JK Rowling', 4))
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('La coupe de feu', 'JK Rowling', 7))
 cur.execute("INSERT INTO livres (titre, auteur, quantité) VALUES (?, ?, ?)",('Lordre du phénix', 'JK Rowling', 3))
