@@ -7,14 +7,14 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('A lécole des sorciers'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('La chambre des secrets'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('Le prisonier d'ascaban'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('La coupe de feu'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('Lordre du phénix'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('Le prince de sang mélé'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('Les reliques de la mort'))
-cur.execute("INSERT INTO clients (titre) VALUES (?)",('Nan mais alo quoi'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('A lécole des sorciers'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('La chambre des secrets'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('Le prisonier d'ascaban'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('La coupe de feu'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('Lordre du phénix'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('Le prince de sang mélé'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('Les reliques de la mort'))
+cur.execute("INSERT INTO livres (titre) VALUES (?)",('Nan mais alo quoi'))
 
 connection.commit()
 connection.close()
