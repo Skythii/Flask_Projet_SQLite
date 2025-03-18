@@ -8,9 +8,10 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 def est_authentifie():
     return session.get('authentifie')
 
+# Page d'accueil
 @app.route('/')
-def hello_world():
-    return render_template('hello.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/lecture')
 def lecture():
@@ -62,16 +63,27 @@ def enregistrer_client():
     return redirect('/consultation/')
 
 # API Gestion des livres
+# Ajouter un livre (formulaire)
+@app.route('/ajouter_livre', methods=['GET'])
+def ajouter_livre_form():
+    return render_template('ajouter_livre.html')
+
+# Ajouter un livre (traitement POST)
 @app.route('/livres', methods=['POST'])
 def ajouter_livre():
-    data = request.get_json()
+    titre = request.form['titre']
+    auteur = request.form['auteur']
+    quantite = request.form['quantite']
+
     conn = sqlite3.connect('dbbibliotheque.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO livres (titre, auteur, quantite) VALUES (?, ?, ?)', (data['titre'], data['auteur'], data['quantite']))
+    cursor.execute('INSERT INTO livres (titre, auteur, quantite) VALUES (?, ?, ?)', (titre, auteur, quantite))
     conn.commit()
     conn.close()
-    return jsonify({"message": "Livre ajouté avec succès"}), 201
 
+    return redirect(url_for('afficher_livres'))
+
+# Afficher les livres
 @app.route('/livres', methods=['GET'])
 def afficher_livres():
     conn = sqlite3.connect('dbbibliotheque.db')
@@ -79,35 +91,44 @@ def afficher_livres():
     cursor.execute('SELECT * FROM livres')
     livres = cursor.fetchall()
     conn.close()
-    return jsonify(livres)
+    return render_template('afficher_livres.html', livres=livres)
 
+# Modifier un livre (formulaire)
 @app.route('/livres/<int:id>', methods=['GET'])
-def afficher_livre(id):
+def modifier_livre_form(id):
     conn = sqlite3.connect('dbbibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres WHERE id = ?', (id,))
     livre = cursor.fetchone()
     conn.close()
-    return jsonify(livre) if livre else (jsonify({"message": "Livre non trouvé"}), 404)
+    return render_template('modifier_livre.html', livre=livre)
 
-@app.route('/livres/<int:id>', methods=['PUT'])
+# Modifier un livre (traitement POST)
+@app.route('/livres/<int:id>', methods=['POST'])
 def modifier_livre(id):
-    data = request.get_json()
+    titre = request.form['titre']
+    auteur = request.form['auteur']
+    quantite = request.form['quantite']
+
     conn = sqlite3.connect('dbbibliotheque.db')
     cursor = conn.cursor()
-    cursor.execute('UPDATE livres SET titre = ?, auteur = ?, quantite = ? WHERE id = ?', (data['titre'], data['auteur'], data['quantite'], id))
+    cursor.execute('UPDATE livres SET titre = ?, auteur = ?, quantite = ? WHERE id = ?', 
+                   (titre, auteur, quantite, id))
     conn.commit()
     conn.close()
-    return jsonify({"message": "Livre mis à jour"})
 
-@app.route('/livres/<int:id>', methods=['DELETE'])
+    return redirect(url_for('afficher_livres'))
+
+# Supprimer un livre
+@app.route('/livres/<int:id>', methods=['GET'])
 def supprimer_livre(id):
     conn = sqlite3.connect('dbbibliotheque.db')
     cursor = conn.cursor()
     cursor.execute('DELETE FROM livres WHERE id = ?', (id,))
     conn.commit()
     conn.close()
-    return jsonify({"message": "Livre supprimé"})
+
+    return redirect(url_for('afficher_livres'))
 
 # API Gestion des utilisateurs
 @app.route('/clients', methods=['GET'])
