@@ -1,15 +1,27 @@
-<!-- templates/index.html -->
-<html>
-    <head>
-        <title>Gestion de Bibliothèque</title>
-    </head>
-    <body>
-        <h1>Bienvenue dans la gestion de la bibliothèque</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('ajouter_livre_form') }}">Ajouter un livre</a></li>
-                <li><a href="{{ url_for('afficher_livres') }}">Afficher les livres</a></li>
-            </ul>
-        </nav>
-    </body>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Bibliothèque</title>
+</head>
+<body>
+    <h1>Bienvenue à la Bibliothèque</h1>
+
+   <nav>
+        <ul>
+            <li><a href="{{ url_for('ajouter_livre_form') }}">Ajouter un livre</a></li>
+            <li><a href="{{ url_for('afficher_livres') }}">Afficher les livres</a></li>
+            <li><a href="/livres">Gérer les livres</a></li>
+            <li><a href="/clients">Voir la liste des clients</a></li>
+            <li><a href="/emprunts">Emprunter un livre</a></li>
+            <li><a href="/enregistrer_client">Enregistrer un nouveau client</a></li>
+            <li><a href="/consultation/">Consulter les clients</a></li>
+            <li><a href="/authentification">S'authentifier</a></li>
+            <li><a href="/lecture">Page protégée</a></li>
+        </ul>
+    </nav>
+
+    <p>Utilisez les liens ci-dessus pour accéder aux différentes fonctionnalités de la bibliothèque.</p>
+</body>
 </html>
