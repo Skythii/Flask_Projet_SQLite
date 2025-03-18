@@ -1,10 +1,3 @@
-DROP TABLE IF EXISTS livres;
-CREATE TABLE livres (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    titre TEXT NOT NULL,
-    client TEXT NOT NULL,
-);
 
 DROP TABLE IF EXISTS clients;
 CREATE TABLE clients (
@@ -13,4 +6,23 @@ CREATE TABLE clients (
     nom TEXT NOT NULL,
     prenom TEXT NOT NULL,
     adresse TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS livres;
+CREATE TABLE livres (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titre TEXT NOT NULL,
+    auteur TEXT NOT NULL,
+    quantite INTEGER NOT NULL
+);
+
+DROP TABLE IF EXISTS emprunts;
+CREATE TABLE emprunts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_client INTEGER,
+    id_livre INTEGER,
+    date_emprunt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    date_retour TIMESTAMP NULL,
+    FOREIGN KEY (id_client) REFERENCES clients(id),
+    FOREIGN KEY (id_livre) REFERENCES livres(id)
 );
