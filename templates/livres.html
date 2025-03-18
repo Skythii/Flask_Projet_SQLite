@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des livres</title>
+</head>
+<body>
+    <h2>Livres disponibles</h2>
+    <table border="1">
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Quantité</th>
+        </tr>
+        {% for livre in livres %}
+        <tr>
+            <td>{{ livre[1] }}</td> <!-- Titre -->
+            <td>{{ livre[2] }}</td> <!-- Auteur -->
+            <td>{{ livre[3] }}</td> <!-- Quantité -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
