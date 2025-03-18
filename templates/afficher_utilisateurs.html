@@ -1,0 +1,25 @@
+<!-- templates/afficher_utilisateurs.html -->
+<h1>Liste des utilisateurs</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client[1] }}</td>
+            <td>{{ client[2] }}</td>
+            <td>{{ client[3] }}</td>
+            <td>
+                <a href="/modifier_client/{{ client[0] }}">Modifier</a> |
+                <a href="/supprimer_client/{{ client[0] }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
