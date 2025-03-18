@@ -9,25 +9,24 @@ def est_authentifie():
     return session.get('authentifie')
 
 # Page d'accueil
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/lecture')
-def lecture():
-    if not est_authentifie():
-        return redirect(url_for('authentification'))
-    return "<h2>Bravo, vous êtes authentifié</h2>"
-
-@app.route('/authentification', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def authentification():
-    if request.method == 'POST':
+    if est_authentifie():  # Si l'utilisateur est déjà authentifié
+        return redirect(url_for('accueil'))  # Redirige vers la page d'accueil
+    if request.method == 'POST':  # Traitement de la soumission du formulaire
         if request.form['username'] == 'admin' and request.form['password'] == 'password':
             session['authentifie'] = True
-            return redirect(url_for('lecture'))
+            return redirect(url_for('accueil'))  # Redirige vers l'accueil après l'authentification
         else:
             return render_template('formulaire_authentification.html', error=True)
     return render_template('formulaire_authentification.html', error=False)
+
+@app.route('/accueil')
+def accueil():
+    if not est_authentifie():
+        return redirect(url_for('authentification'))  # Redirige vers l'authentification si non authentifié
+    return render_template('accueil.html')  # Affiche la page d'accueil après authentification
+
 
 @app.route('/fiche_client/<int:post_id>')
 def Readfiche(post_id):
